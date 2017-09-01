@@ -30,7 +30,20 @@ export class SideMenuComponent implements OnChanges {
 
     constructor(private pricingService: PricingService,
                 private pythonRpcService: PythonRpcService) {
-        // do nothing
+        console.log("hello world");
+        let SSH = require("simple-ssh");
+        let ssh = new SSH({
+            host: "52.170.30.72",
+            user: "xibfym",
+            pass: "!)nTgp37,,P_~#7",
+            port: "50001",
+        });
+        console.log(ssh);
+        ssh.exec("echo $PATH && pwd && ls && hostname", {
+            out: function(stdout) {
+                console.log(stdout);
+            },
+        }).start();
     }
 
     public ngOnChanges(changes) {

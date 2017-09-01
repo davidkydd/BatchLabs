@@ -373,6 +373,10 @@
   dependencies:
     "@types/node" "*"
 
+"@types/xterm@^2.0.3":
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/@types/xterm/-/xterm-2.0.3.tgz#df334895f605b9cba999927dd0be90732386caf0"
+
 abbrev@1:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.1.0.tgz#d0554c2256636e2f56e7c2e5ad183f859428d81f"
@@ -622,7 +626,7 @@ asn1.js@^4.0.0:
     inherits "^2.0.1"
     minimalistic-assert "^1.0.0"
 
-asn1@~0.2.3:
+asn1@~0.2.0, asn1@~0.2.3:
   version "0.2.3"
   resolved "https://registry.yarnpkg.com/asn1/-/asn1-0.2.3.tgz#dac8787713c9966849fc8180777ebe9c1ddf3b86"
 
@@ -6257,6 +6261,13 @@ signal-exit@^3.0.0, signal-exit@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/signal-exit/-/signal-exit-3.0.2.tgz#b5fdc08f1287ea1178628e415e25132b73646c6d"
 
+simple-ssh@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/simple-ssh/-/simple-ssh-1.0.0.tgz#b12ec600056c13626cc9a77a50b6b921db39696b"
+  dependencies:
+    ssh2 "^0.5.0"
+    xtend "^4.0.1"
+
 single-line-log@^1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/single-line-log/-/single-line-log-1.1.2.tgz#c2f83f273a3e1a16edb0995661da0ed5ef033364"
@@ -6488,6 +6499,20 @@ sprintf-js@~1.0.2:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/sprintf-js/-/sprintf-js-1.0.3.tgz#04e6926f662895354f3dd015203633b857297e2c"
 
+ssh2-streams@~0.1.18:
+  version "0.1.19"
+  resolved "https://registry.yarnpkg.com/ssh2-streams/-/ssh2-streams-0.1.19.tgz#f80ececc2de1a39e1aa64469851ec32bc96b83f9"
+  dependencies:
+    asn1 "~0.2.0"
+    semver "^5.1.0"
+    streamsearch "~0.1.2"
+
+ssh2@^0.5.0:
+  version "0.5.5"
+  resolved "https://registry.yarnpkg.com/ssh2/-/ssh2-0.5.5.tgz#c7781ecd2ece7304a253cf620fab5a5c22bb2235"
+  dependencies:
+    ssh2-streams "~0.1.18"
+
 sshpk@^1.7.0:
   version "1.13.1"
   resolved "https://registry.yarnpkg.com/sshpk/-/sshpk-1.13.1.tgz#512df6da6287144316dc4c18fe1cf1d940739be3"
@@ -6545,6 +6570,10 @@ stream-http@^2.3.1:
     readable-stream "^2.2.6"
     to-arraybuffer "^1.0.0"
     xtend "^4.0.0"
+
+streamsearch@~0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/streamsearch/-/streamsearch-0.1.2.tgz#808b9d0e56fc273d809ba57338e929919a1a9f1a"
 
 strict-uri-encode@^1.0.0:
   version "1.1.0"
@@ -7537,7 +7566,7 @@ xpath.js@~1.0.5:
   version "1.0.7"
   resolved "https://registry.yarnpkg.com/xpath.js/-/xpath.js-1.0.7.tgz#7e94627f541276cbc6a6b02b5d35e9418565b3e4"
 
-xtend@^4.0.0, xtend@~4.0.1:
+xtend@^4.0.0, xtend@^4.0.1, xtend@~4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/xtend/-/xtend-4.0.1.tgz#a5c6d532be656e23db820efb943a1f04998d63af"
 
@@ -7546,6 +7575,10 @@ xtend@~2.1.1:
   resolved "https://registry.yarnpkg.com/xtend/-/xtend-2.1.2.tgz#6efecc2a4dad8e6962c4901b337ce7ba87b5d28b"
   dependencies:
     object-keys "~0.4.0"
+
+xterm@^2.9.2:
+  version "2.9.2"
+  resolved "https://registry.yarnpkg.com/xterm/-/xterm-2.9.2.tgz#ec3e7c636ba67af4a7026be2cff7bdf08e56400a"
 
 y18n@^3.2.1:
   version "3.2.1"

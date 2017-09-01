@@ -166,6 +166,7 @@
     "@angular/platform-browser-dynamic": "4.3.5",
     "@angular/router": "4.3.5",
     "@angular/tsc-wrapped": "4.3.5",
+    "@types/xterm": "^2.0.3",
     "angular-tree-component": "~4.1.0",
     "azure-batch": "~2.1.0-preview",
     "azure-storage": "^2.1.0",
@@ -190,7 +191,9 @@
     "reflect-metadata": "^0.1.9",
     "roboto-fontface": "^0.7.0",
     "rxjs": "^5.4.2",
+    "simple-ssh": "^1.0.0",
     "stylint": "~1.5.9",
+    "xterm": "^2.9.2",
     "zone.js": "0.8.10"
   }
 }
