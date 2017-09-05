@@ -25,6 +25,7 @@ import { MarketModule } from "app/components/market/market.module";
 import { NodeModule } from "app/components/node/node.module";
 import { PoolModule } from "app/components/pool/pool.module";
 import { TaskModule } from "app/components/task/task.module";
+import { TerminalModule } from "app/components/terminal/terminal.module";
 
 // unhandled application error handler
 import { BatchLabsErrorHandler } from "app/error-handler";
@@ -73,7 +74,7 @@ import {
 
 const modules = [
     AccountModule, ApplicationModule, DataModule, FileModule,
-    JobModule, NodeModule, PoolModule, TaskModule, MarketModule,
+    JobModule, NodeModule, PoolModule, TaskModule, MarketModule, TerminalModule,
 ];
 
 @NgModule({

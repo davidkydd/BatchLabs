@@ -22,6 +22,7 @@ import { PoolDefaultComponent, PoolDetailsComponent } from "./components/pool/de
 import { PoolHomeComponent } from "./components/pool/home/pool-home.component";
 import { TaskDefaultComponent, TaskDetailsComponent } from "./components/task/details";
 import { TaskHomeComponent } from "./components/task/home";
+import { TerminalHomeComponent } from "./components/terminal/home";
 
 // set up the routing table
 export const routes: Routes = [
@@ -129,6 +130,10 @@ export const routes: Routes = [
         children: [
             { path: "", component: FileDetailsComponent },
         ],
+    },
+    {
+        path: "terminal",
+        component: TerminalHomeComponent,
     },
 ];
 

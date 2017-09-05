@@ -29,22 +29,7 @@ export class SideMenuComponent implements OnChanges {
     @Input() public poolTemplate: NcjPoolTemplate;
 
     constructor(private pricingService: PricingService,
-                private pythonRpcService: PythonRpcService) {
-        console.log("hello world");
-        let SSH = require("simple-ssh");
-        let ssh = new SSH({
-            host: "52.170.30.72",
-            user: "xibfym",
-            pass: "!)nTgp37,,P_~#7",
-            port: "50001",
-        });
-        console.log(ssh);
-        ssh.exec("echo $PATH && pwd && ls && hostname", {
-            out: function(stdout) {
-                console.log(stdout);
-            },
-        }).start();
-    }
+                private pythonRpcService: PythonRpcService) { }
 
     public ngOnChanges(changes) {
         if (changes.form) {
