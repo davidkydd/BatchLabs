@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { FormControl } from "@angular/forms";
 
 @Component({
     selector: "bl-terminal-home",
@@ -8,6 +9,7 @@ export class TerminalHomeComponent {
     public static breadcrumb() {
         return { name: "SSH" };
     }
+    public pickedPool = new FormControl(null);
 
     constructor( ) {
         console.log("hello world");
