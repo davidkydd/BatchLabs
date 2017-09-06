@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from "@angular/core";
 import { autobind } from "core-decorators";
 import { List } from "immutable";
 
+import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
 import { SidebarRef } from "app/components/base/sidebar";
 import { Node, NodeAgentSku, NodeConnectionSettings, Pool } from "app/models";
 import { AddNodeUserAttributes, NodeService, NodeUserService } from "app/services";
@@ -25,6 +26,11 @@ export class NodeConnectComponent implements OnInit {
     public windows = false;
     public linux = false;
     public hasIp = false;
+    public commandValue: FormControl = new FormControl(null);
+    public form: FormGroup;
+    public creds;
+    public lastCommand = "None";
+    public cmds = [];
 
     /**
      * Base content for the rdp file(IP adress).
@@ -51,7 +57,9 @@ export class NodeConnectComponent implements OnInit {
     constructor(
         public sidebarRef: SidebarRef<any>,
         private nodeUserService: NodeUserService,
-        private nodeService: NodeService) {
+        private nodeService: NodeService,
+        public formBuilder: FormBuilder) {
+            this.form = new FormGroup({});
     }
 
     public ngOnInit() {
@@ -63,6 +71,7 @@ export class NodeConnectComponent implements OnInit {
             });
         });
         this._loadConnectionData();
+        this.form = this.formBuilder.group({ command: this.commandValue });
     }
 
     @autobind()
@@ -82,6 +91,13 @@ export class NodeConnectComponent implements OnInit {
     public addOrUpdateUser(credentials) {
         return this.nodeUserService.addOrUpdateUser(this.pool.id, this.node.id, credentials).do(() => {
             this.credentials = credentials;
+            const { ip, port } = this.connectionSettings;
+            this.creds = {
+                host: ip,
+                user: this.credentials.name,
+                pass: this.credentials.password,
+                port: port,
+            };
         });
     }
 
@@ -91,6 +107,19 @@ export class NodeConnectComponent implements OnInit {
         }
         const { ip, port } = this.connectionSettings;
         return `ssh ${this.credentials.name}@${ip} -p ${port}`;
+    }
+
+    public runCommand() {
+        let SSH = require("simple-ssh");
+        let ssh = new SSH(this.creds);
+        let cmd = String(this.commandValue.value);
+        this.commandValue.reset();
+        ssh.exec(cmd, {
+            out: (stdout) => {
+                this.cmds.push(cmd);
+                this.cmds.push(String(stdout));
+            },
+        }).start();
     }
 
     @autobind()

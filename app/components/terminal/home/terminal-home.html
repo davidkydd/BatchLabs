@@ -1,3 +1,9 @@
 <div>
-    Hello world
+    <bl-complex-form style = "float:left;" [formGroup]="form" [hideFooter]="true">
+        <bl-form-page main-form-page [title]="title">
+            <bl-form-section title="Pool">
+                <bl-pool-picker [formControl]="pickedPool"></bl-pool-picker>
+            </bl-form-section>
+        </bl-form-page>
+    </bl-complex-form>
 </div>

@@ -24,6 +24,12 @@
                 <bl-text-property label="Ip" [value]="connectionSettings.ip"></bl-text-property>
                 <bl-text-property label="Port" [value]="connectionSettings.port"></bl-text-property>
                 <bl-text-property *ngIf="!windows" label="SSH command" [value]="sshCommand"></bl-text-property>
+                <div *ngIf="!windows">
+                    <div *ngFor="let cmd of cmds">
+                            {{ credentials.name }} $: {{ cmd }}
+                    </div>
+                    <div> Terminal: <input (keyup.enter) = "runCommand()" mdInput type="text" [formControl]="commandValue" [placeholder]="'Command'"> </div>
+                </div>
             </bl-property-group>
         </div>
     </div>

@@ -1,17 +1,23 @@
-import { Component } from "@angular/core";
-import { FormControl } from "@angular/forms";
+import { Component, OnInit } from "@angular/core";
+import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
+import { NodeService } from "app/services";
 
 @Component({
     selector: "bl-terminal-home",
     templateUrl: "terminal-home.html",
 })
-export class TerminalHomeComponent {
+export class TerminalHomeComponent implements OnInit {
     public static breadcrumb() {
         return { name: "SSH" };
     }
     public pickedPool = new FormControl(null);
+    public form: FormGroup;
+    public data;
 
-    constructor( ) {
+    constructor(public formBuilder: FormBuilder,
+                private nodeService: NodeService) {
+        this.form = new FormGroup({});
+/*
         console.log("hello world");
         let SSH = require("simple-ssh");
         let ssh = new SSH({
@@ -26,6 +32,19 @@ export class TerminalHomeComponent {
                 console.log(stdout);
             },
         }).start();
+
+        this.route.queryParams.subscribe(params => {
+            console.log(params);
+        });
+*/
+        this.pickedPool.valueChanges.distinctUntilChanged()
+            .subscribe((query: string) => {
+                console.log(this.nodeService.list(this.pickedPool.value));
+            });
+    }
+
+    public ngOnInit() {
+        this.form = this.formBuilder.group({ poolpicker: this.pickedPool });
     }
 
 }
