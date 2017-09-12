@@ -46,12 +46,50 @@ export class SubmitMarketApplicationComponent implements OnInit {
             this.applicationId = params["applicationId"];
             this.actionId = params["actionId"];
             this.title = `Run ${this.actionId} from ${this.applicationId}`;
+
+            this.templateService.getJobTemplate(this.applicationId, this.actionId).subscribe({
+                next: (template) => {
+                    this.jobTemplate = template.job;
+                    this.jobParametersWrapper = this._parseParameters(this.jobTemplate);
+                    this._createForms();
+                    console.log(template);
+                },
+                error: (err) => {
+                    console.log(err);
+                },
+            });
+
+            this.templateService.getPoolTemplate(this.applicationId, this.actionId).subscribe({
+                next: (template) => {
+                    this.poolTemplate = template.pool;
+                    this.poolParametersWrapper = this._parseParameters(this.poolTemplate);
+                    this._createForms();
+                    console.log(template);
+                },
+                error: (err) => {
+                    console.log(err);
+                },
+            });
+/*
+            this.templateService.getTemplates(this.applicationId, this.actionId).subscribe({
+                next: (templates) => {
+                    console.log(templates);
+                },
+                error: (err) => {
+                    console.log(err);
+                },
+            });
+
             this.templateService.getTemplates(this.applicationId, this.actionId).subscribe((templates) => {
+
                 this.jobTemplate = templates.job;
                 this.poolTemplate = templates.pool;
+                console.log("JOB: ", this.jobTemplate);
+                console.log("POOL: ", this.poolTemplate);
                 this._parseParameters();
                 this._createForms();
             });
+            */
             this.templateService.getApplication(this.applicationId).subscribe((application) => {
                 this.icon = application.icon;
             });
@@ -59,7 +97,11 @@ export class SubmitMarketApplicationComponent implements OnInit {
     }
 
     public pickMode(mode: Modes) {
-        this.modeState = mode;
+        if (mode === Modes.NewPoolAndJob && this.jobTemplate && this.poolTemplate ||
+            mode === Modes.ExistingPoolAndJob && this.jobTemplate ||
+            mode === Modes.NewPool && this.poolTemplate) {
+                this.modeState = mode;
+        }
     }
 
     public get submitToolTip(): string {
@@ -108,6 +150,16 @@ export class SubmitMarketApplicationComponent implements OnInit {
         return obs;
     }
 
+    private _parseParameters(template) {
+        const parameters = template.parameters;
+        const tempWrapper: any[] = [];
+        for (let name of Object.keys(parameters)) {
+            const param = parameters[name];
+            tempWrapper.push(new NcjParameterWrapper(name, param));
+        }
+        return tempWrapper;
+    }
+    /*
     private _parseParameters() {
         const jobParameters = this.jobTemplate.parameters;
         const jobTempWrapper: any[] = [];
@@ -124,6 +176,7 @@ export class SubmitMarketApplicationComponent implements OnInit {
         }
         this.poolParametersWrapper = poolTempWrapper;
     }
+    */
 
     private _getFormGroup(template): FormGroup {
         let templateParameters = [];

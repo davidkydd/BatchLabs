@@ -88,14 +88,20 @@ export class NcjTemplateService {
         }).share();
     }
 
-    public getTemplates(applicationId: string, actionId: string): Observable<any> {
+    public getJobTemplate(applicationId: string, actionId: string): Observable<any> {
         const job = this.get(`${applicationId}/${actionId}/job.template.json`);
-        const pool = this.get(`${applicationId}/${actionId}/pool.template.json`);
-
-        return Observable.combineLatest(job, pool).map((data) => {
+        return Observable.combineLatest(job, job).map((data) => {
             return {
                 job: data[0],
-                pool: data[1],
+            };
+        }).share();
+    }
+
+    public getPoolTemplate(applicationId: string, actionId: string): Observable<any> {
+        const pool = this.get(`${applicationId}/${actionId}/pool.template.json`);
+        return Observable.combineLatest(pool, pool).map((data) => {
+            return {
+                pool: data[0],
             };
         }).share();
     }
