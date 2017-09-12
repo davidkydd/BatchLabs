@@ -24,6 +24,10 @@ export class ChooseActionComponent implements OnInit, OnDestroy {
 
     constructor(private templateService: NcjTemplateService, private route: ActivatedRoute) { }
 
+    public computeReadMeLink(action) {
+        return `https://github.com/Azure/BatchLabs-data/tree/ncj/ncj/${this.applicationId}/${action.id}/readme.md`;
+    }
+
     public ngOnInit() {
         this._paramsSubscriber = this.route.params.subscribe((params) => {
             this.applicationId = params["applicationId"];
