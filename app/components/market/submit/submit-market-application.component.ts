@@ -52,10 +52,9 @@ export class SubmitMarketApplicationComponent implements OnInit {
                     this.jobTemplate = template.job;
                     this.jobParametersWrapper = this._parseParameters(this.jobTemplate);
                     this._createForms();
-                    console.log(template);
                 },
                 error: (err) => {
-                    console.log(err);
+                    // do nothing
                 },
             });
 
@@ -64,32 +63,12 @@ export class SubmitMarketApplicationComponent implements OnInit {
                     this.poolTemplate = template.pool;
                     this.poolParametersWrapper = this._parseParameters(this.poolTemplate);
                     this._createForms();
-                    console.log(template);
                 },
                 error: (err) => {
-                    console.log(err);
-                },
-            });
-/*
-            this.templateService.getTemplates(this.applicationId, this.actionId).subscribe({
-                next: (templates) => {
-                    console.log(templates);
-                },
-                error: (err) => {
-                    console.log(err);
+                    // do nothing
                 },
             });
 
-            this.templateService.getTemplates(this.applicationId, this.actionId).subscribe((templates) => {
-
-                this.jobTemplate = templates.job;
-                this.poolTemplate = templates.pool;
-                console.log("JOB: ", this.jobTemplate);
-                console.log("POOL: ", this.poolTemplate);
-                this._parseParameters();
-                this._createForms();
-            });
-            */
             this.templateService.getApplication(this.applicationId).subscribe((application) => {
                 this.icon = application.icon;
             });
@@ -159,24 +138,6 @@ export class SubmitMarketApplicationComponent implements OnInit {
         }
         return tempWrapper;
     }
-    /*
-    private _parseParameters() {
-        const jobParameters = this.jobTemplate.parameters;
-        const jobTempWrapper: any[] = [];
-        for (let name of Object.keys(jobParameters)) {
-            const param = jobParameters[name];
-            jobTempWrapper.push(new NcjParameterWrapper(name, param));
-        }
-        this.jobParametersWrapper = jobTempWrapper;
-        const poolParameters = this.poolTemplate.parameters;
-        const poolTempWrapper: any[] = [];
-        for (let name of Object.keys(poolParameters)) {
-            const param = poolParameters[name];
-            poolTempWrapper.push(new NcjParameterWrapper(name, param));
-        }
-        this.poolParametersWrapper = poolTempWrapper;
-    }
-    */
 
     private _getFormGroup(template): FormGroup {
         let templateParameters = [];
