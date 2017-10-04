@@ -1,14 +1,16 @@
 import { Component, DebugElement, NO_ERRORS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { FormControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { MaterialModule, MdOption, MdSelect } from "@angular/material";
+import { MdOption, MdSelect } from "@angular/material";
 import { By } from "@angular/platform-browser";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { RouterTestingModule } from "@angular/router/testing";
+
 import { DialogService } from "app/components/base/dialogs";
 import { FileGroupPickerComponent } from "app/components/data/shared";
 import { CloudFilePickerComponent } from "app/components/data/shared/cloud-file-picker";
 import { NcjParameterExtendedType, NcjParameterWrapper, ParameterInputComponent } from "app/components/market/submit";
+import { MaterialModule } from "app/core";
 import { BatchApplication, NcjParameterRawType } from "app/models";
 import { StorageService } from "app/services";
 import { Subject } from "rxjs";
@@ -29,7 +31,7 @@ class TestComponent {
     public param = new NcjParameterWrapper("jobName", {
         defaultValue: "",
         type: NcjParameterRawType.string,
-        metadata : {
+        metadata: {
             description: "Param Description",
         },
     });
@@ -104,7 +106,7 @@ describe("ParameterInputComponent", () => {
         beforeEach(() => {
             testComponent.param = new NcjParameterWrapper("jobName", {
                 type: NcjParameterRawType.string,
-                metadata : {
+                metadata: {
                     description: "Param Description",
                 },
                 defaultValue: initialInput,
@@ -116,7 +118,7 @@ describe("ParameterInputComponent", () => {
         });
 
         it("should show default string input", () => {
-           expect(inputEl.nativeElement.value).toBe(initialInput);
+            expect(inputEl.nativeElement.value).toBe(initialInput);
         });
 
         it("should update input when form changes", () => {
@@ -135,7 +137,7 @@ describe("ParameterInputComponent", () => {
             const input = "abcde";
             testComponent.param = new NcjParameterWrapper("jobName", {
                 type: NcjParameterRawType.string,
-                metadata : {
+                metadata: {
                     description: "Param Description",
                 },
                 defaultValue: initialInput,
@@ -151,7 +153,7 @@ describe("ParameterInputComponent", () => {
             const input = "abcde";
             testComponent.param = new NcjParameterWrapper("jobName", {
                 type: NcjParameterRawType.string,
-                metadata : {
+                metadata: {
                     description: "Param Description",
                 },
                 defaultValue: initialInput,
@@ -167,7 +169,7 @@ describe("ParameterInputComponent", () => {
             const input = "abcde";
             testComponent.param = new NcjParameterWrapper("jobName", {
                 type: NcjParameterRawType.string,
-                metadata : {
+                metadata: {
                     description: "Param Description",
                 },
                 defaultValue: initialInput,
@@ -183,7 +185,7 @@ describe("ParameterInputComponent", () => {
             const input = "abcde";
             testComponent.param = new NcjParameterWrapper("jobName", {
                 type: NcjParameterRawType.string,
-                metadata : {
+                metadata: {
                     description: "Param Description",
                 },
                 defaultValue: initialInput,
@@ -201,7 +203,7 @@ describe("ParameterInputComponent", () => {
         beforeEach(() => {
             testComponent.param = new NcjParameterWrapper("jobName", {
                 type: NcjParameterRawType.string,
-                metadata : {
+                metadata: {
                     description: "Param Description",
                 },
                 minLength: 3,
@@ -242,7 +244,7 @@ describe("ParameterInputComponent", () => {
         beforeEach(() => {
             testComponent.param = new NcjParameterWrapper("frameEnd", {
                 type: NcjParameterRawType.int,
-                metadata : {
+                metadata: {
                     description: "description",
                 },
                 defaultValue: initialInput,
@@ -255,7 +257,7 @@ describe("ParameterInputComponent", () => {
         });
 
         it("should show default int input", () => {
-           expect(inputEl.nativeElement.value).toBe(String(initialInput));
+            expect(inputEl.nativeElement.value).toBe(String(initialInput));
         });
 
         it("should update input when form changes", () => {
@@ -282,7 +284,7 @@ describe("ParameterInputComponent", () => {
         beforeEach(() => {
             testComponent.param = new NcjParameterWrapper("frameEnd", {
                 type: NcjParameterRawType.int,
-                metadata : {
+                metadata: {
                     description: "Param Description",
                 },
                 minValue: 3,
@@ -323,10 +325,10 @@ describe("ParameterInputComponent", () => {
         beforeEach(() => {
             testComponent.param = new NcjParameterWrapper("jobName", {
                 type: NcjParameterRawType.string,
-                metadata : {
+                metadata: {
                     description: "description",
                 },
-                allowedValues : ["a", "b", "c"],
+                allowedValues: ["a", "b", "c"],
                 defaultValue: initialInput,
             });
             testComponent.paramControl.setValue(initialInput);
@@ -360,7 +362,7 @@ describe("ParameterInputComponent", () => {
         beforeEach(() => {
             testComponent.param = new NcjParameterWrapper("outputFileGroup", {
                 type: NcjParameterRawType.string,
-                metadata : {
+                metadata: {
                     description: "description",
                     advancedType: NcjParameterExtendedType.fileGroup,
                 },
@@ -394,7 +396,7 @@ describe("ParameterInputComponent", () => {
         beforeEach(() => {
             testComponent.param = new NcjParameterWrapper("blendFile", {
                 type: NcjParameterRawType.string,
-                metadata : {
+                metadata: {
                     description: "description",
                     advancedType: NcjParameterExtendedType.fileInFileGroup,
                     dependsOn: "sceneData",
